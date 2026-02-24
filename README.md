@@ -17,7 +17,7 @@ O projeto contém:
 O projeto está dividido em duas pastas:
 
 ecommerce-challenge/
- ├── backend/
+ ├── backend/ 
  └── frontend/
 
 ---
