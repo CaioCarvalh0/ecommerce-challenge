@@ -1,3 +1,20 @@
 spring:
   application:
     name: ecommerce
+
+  datasource:
+    url: jdbc:postgresql://servercaio.ddns.net:5432/postgres
+    username: admin
+    password: masterkey
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+
+external:
+  products:
+    base-url: https://dummyjson.com
