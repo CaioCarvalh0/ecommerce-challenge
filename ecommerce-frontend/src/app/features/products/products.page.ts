@@ -12,7 +12,6 @@ import { CartStore } from '../cart/cart.store';
   standalone: true,
   imports: [
     CommonModule,
-    RouterLink,
     CurrencyPipe,
     Card,
     ProgressSpinner,
