@@ -60,8 +60,8 @@ mvn spring-boot:run
 
 ou  
 
-./mvnw clean install
-./mvnw spring-boot:run
+./mvnw clean install  
+./mvnw spring-boot:run  
 
 A API ficará disponível em:
 
