@@ -3,9 +3,9 @@ spring:
     name: ecommerce
 
   datasource:
-    url: ${DB_URL:jdbc:postgresql://localhost:5432/Ecommerce}
-    username: ${DB_USERNAME:ecommerce_user}
-    password: ${DB_PASSWORD:ecommerce_pass}
+    url: jdbc:postgresql://localhost:5432/Ecommerce
+    username: ecommerce_user
+    password: ecommerce_pass
 
   jpa:
     hibernate:
