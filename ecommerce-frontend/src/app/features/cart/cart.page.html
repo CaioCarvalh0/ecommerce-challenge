@@ -1,0 +1,40 @@
+<div class="cart-header">
+  <h2>Carrinho</h2>
+  <a routerLink="/products">
+    <p-button type="button" size="small" severity="info" label="Voltar"></p-button>
+  </a>
+</div>
+
+@if (cart.isEmpty()) {
+<div class="cart-empty">
+  <p>Seu Carrinho está vazio.</p>
+</div>
+} @else {
+<div class="cart-container">
+  @for (i of cart.items(); track $index) {
+  <p-card [header]="i.nome" [subheader]="(i.preco | currency:'BRL') ?? undefined">
+    <ng-template #content>
+      <div class="cart-item">
+        @if (i.imagem) {
+        <img [src]="i.imagem" class="cart-item-image" />
+        }
+        <div class="cart-item-details">
+          <p-inputNumber [ngModel]="i.quantidade" (ngModelChange)="cart.setQuantity(i.productId, $event)" [min]="1">
+          </p-inputNumber>
+          <span>Subtotal: {{ (i.preco * i.quantidade) | currency:'BRL' }}</span>
+          <p-button icon="pi pi-trash" severity="danger" size="small" (click)="cart.remove(i.productId)"></p-button>
+        </div>
+      </div>
+    </ng-template>
+  </p-card>
+  }
+
+  <div class="cart-summary">
+    <strong>Total: {{ cart.total() | currency:'BRL' }}</strong>
+    <div class="cart-actions">
+      <p-button type="button" label="Limpar Carrinho" size="small" severity="danger" (click)="cart.clear()"></p-button>
+      <p-button type="button" label="Confirmar" size="small" (click)="goCheckout()"></p-button>
+    </div>
+  </div>
+</div>
+}

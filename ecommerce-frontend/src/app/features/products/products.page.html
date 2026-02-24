@@ -1,0 +1,23 @@
+@if (store.loading()) {
+  <div class="products-loading">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+} @else {
+  <div class="products-grid">
+    @for (p of store.products(); track $index) {
+      <p-card [header]="p.nome" [subheader]="(p.precoReais | currency:'BRL') ?? undefined">
+        <ng-template #content>
+          @if (p.imagem) {
+            <img [src]="p.imagem" alt="" class="product-image" />
+          }
+          <p class="product-description">{{ p.descricao }}</p>
+          <small>Stock: {{ p.estoque }}</small>
+        </ng-template>
+
+        <ng-template #footer>
+          <p-button type="button" size="small" label="Adicionar ao Carrinho" (click)="cart.add(p)"></p-button>
+        </ng-template>
+      </p-card>
+    }
+  </div>
+}

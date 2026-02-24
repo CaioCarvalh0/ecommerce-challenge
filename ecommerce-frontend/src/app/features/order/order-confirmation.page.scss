@@ -1,0 +1,23 @@
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+}
+
+.order-loading {
+  padding: 16px;
+}
+
+.order-container {
+  padding: 16px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.order-not-found {
+  padding: 16px;
+}

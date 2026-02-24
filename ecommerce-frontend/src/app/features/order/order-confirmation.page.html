@@ -1,0 +1,40 @@
+<div class="order-header">
+  <h2>Pedido Confirmado</h2>
+  <a routerLink="/products">
+    <p-button type="button" size="small" severity="info" label="Voltar para Produtos"></p-button>
+  </a>
+</div>
+
+@if (store.loading()) {
+  <div class="order-loading">
+    <p-progressSpinner></p-progressSpinner>
+  </div>
+} @else {
+  @if (store.order()) {
+    <div class="order-container">
+      <p-card
+        [header]="'Pedido #' + store.order()?.id"
+        [subheader]="'Total: ' + (store.order()?.total | currency: 'BRL')"
+      >
+        <ng-template #content>
+          <p><strong>Nome:</strong> {{ store.order()?.nome }}</p>
+          <p><strong>Email:</strong> {{ store.order()?.email }}</p>
+          <p><strong>Endereço:</strong> {{ store.order()?.endereco }}</p>
+          <p><strong>Forma de Pagamento:</strong> {{ store.order()?.formaPagamento }}</p>
+          <p><strong>Criado em:</strong> {{ store.order()?.criadoEm | date: 'medium' }}</p>
+
+          <hr />
+
+          @for (item of store.order()?.itens; track $index) {
+            <div class="order-item">
+              <span>{{ item.nome }} (x{{ item.quantidade }})</span>
+              <span>{{ item.subtotal | currency: 'BRL' }}</span>
+            </div>
+          }
+        </ng-template>
+      </p-card>
+    </div>
+  } @else {
+    <div class="order-not-found">Pedido não encontrado.</div>
+  }
+}

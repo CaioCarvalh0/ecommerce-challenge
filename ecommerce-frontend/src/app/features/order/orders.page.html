@@ -1,0 +1,53 @@
+<div class="orders-header">
+  <h2>Pedidos</h2>
+  <a routerLink="/products">
+    <p-button type="button" size="small" severity="info" label="Voltar"></p-button>
+  </a>
+</div>
+
+<div class="orders-layout">
+  <div class="orders-search">
+    <p-card header="Encontrar Pedido">
+      <form [formGroup]="form" (ngSubmit)="search()" class="orders-form">
+        <input pInputText formControlName="id" placeholder="Order number" type="number" min="1" />
+        <p-button pButton type="submit" label="Buscar" size="small" [disabled]="form.invalid"></p-button>
+      </form>
+    </p-card>
+  </div>
+
+  <div class="orders-result">
+    @if (store.loading()) {
+      <div class="orders-loading">
+        <p-progressSpinner></p-progressSpinner>
+      </div>
+    } @else {
+      @if (store.order()) {
+        <div class="orders-container">
+          <p-card
+            [header]="'Pedido #' + store.order()?.id"
+            [subheader]="'Total: ' + (store.order()?.total | currency: 'BRL')"
+          >
+            <ng-template #content>
+              <p><strong>Nome:</strong> {{ store.order()?.nome }}</p>
+              <p><strong>Email:</strong> {{ store.order()?.email }}</p>
+              <p><strong>Endereço:</strong> {{ store.order()?.endereco }}</p>
+              <p><strong>Forma de Pagamento:</strong> {{ store.order()?.formaPagamento }}</p>
+              <p><strong>Criado em:</strong> {{ store.order()?.criadoEm | date: 'medium' }}</p>
+
+              <hr/>
+
+              @for (item of store.order()?.itens; track $index) {
+                <div class="orders-item">
+                  <span>{{ item.nome }} (x{{ item.quantidade }})</span>
+                  <span>{{ item.subtotal | currency: 'BRL' }}</span>
+                </div>
+              }
+            </ng-template>
+          </p-card>
+        </div>
+      } @else {
+        <div class="orders-empty">Search by order number to see details.</div>
+      }
+    }
+  </div>
+</div>

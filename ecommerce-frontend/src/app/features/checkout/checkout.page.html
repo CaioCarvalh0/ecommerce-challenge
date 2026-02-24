@@ -1,0 +1,74 @@
+<div class="checkout-header">
+  <h2>Checkout</h2>
+  <a routerLink="/cart">
+    <p-button type="button" size="small" severity="info" label="Voltar ao Carrinho"></p-button>
+  </a>
+</div>
+
+@if (cart.isEmpty()) {
+  <div class="checkout-empty">
+    <p>Seu Carrinho está Vazio</p>
+    <a routerLink="/products">
+      <p-button type="button" size="small" label="Voltar para Produtos"></p-button>
+    </a>
+  </div>
+} @else {
+  <div class="checkout-layout">
+    <div class="checkout-column">
+      <p-card header="Informações do Cliente">
+        <form [formGroup]="form" (ngSubmit)="submit()" class="checkout-form">
+          <input pInputText formControlName="nome" placeholder="Nome" />
+          <input pInputText formControlName="email" placeholder="Email" />
+          <input pInputText formControlName="endereco" placeholder="Endereço" />
+
+          <select formControlName="formaPagamento" class="checkout-select">
+            @for (opt of paymentOptions; track $index) {
+              <option [value]="opt.value">
+                {{ opt.label }}
+              </option>
+            }
+          </select>
+
+          @if (order.error()) {
+            <small class="checkout-error">{{ order.error() }}</small>
+          }
+        </form>
+      </p-card>
+    </div>
+
+    <div class="checkout-column checkout-summary-column">
+      <p-card header="Sumario do Pedido">
+        <div class="checkout-items">
+          @for (i of cart.items(); track $index) {
+            <div class="checkout-item-row">
+              <div>
+                <div class="checkout-item-name">{{ i.nome }}</div>
+                <div class="checkout-item-meta">
+                  {{ i.quantidade }} x {{ i.preco | currency: 'BRL' }}
+                </div>
+              </div>
+              <div class="checkout-item-subtotal">
+                {{ i.preco * i.quantidade | currency: 'BRL' }}
+              </div>
+            </div>
+          }
+        </div>
+
+        <div class="checkout-summary-footer">
+          <div class="checkout-summary-total">
+            <span>Total</span>
+            <strong>{{ cart.total() | currency: 'BRL' }}</strong>
+          </div>
+          <p-button
+            pButton
+            type="submit"
+            label="Confirmar Pedido"
+            size="small"
+            [disabled]="form.invalid || order.creating()"
+            (onClick)="submit()"
+          ></p-button>
+        </div>
+      </p-card>
+    </div>
+  </div>
+}

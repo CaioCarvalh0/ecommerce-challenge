@@ -1,0 +1,77 @@
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 24px;
+  background: #ffffff;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.app-logo {
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.app-nav-links {
+  display: flex;
+  gap: 16px;
+}
+
+.app-nav-link {
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.app-nav-link:hover {
+  color: #111827;
+}
+
+.app-cart-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.app-cart-icon {
+  font-size: 1rem;
+}
+
+.app-cart-badge {
+  min-width: 18px;
+  padding: 0 4px;
+  border-radius: 999px;
+  background: #111827;
+  color: #f9fafb;
+  font-size: 0.75rem;
+  text-align: center;
+}
+
+.app-main {
+  flex: 1;
+  padding: 24px 16px 32px;
+}
+
+@media (min-width: 768px) {
+  .app-nav {
+    padding-inline: 40px;
+  }
+
+  .app-main {
+    padding-inline: 32px;
+  }
+}

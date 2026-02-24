@@ -1,0 +1,55 @@
+.orders-header {
+  max-width: 960px;
+  margin: 0 auto 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.orders-layout {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.orders-search,
+.orders-result {
+  flex: 1;
+}
+
+.orders-form {
+  display: flex;
+  gap: 8px;
+}
+
+.orders-loading {
+  padding: 16px;
+}
+
+.orders-container {
+  padding: 4px 0;
+}
+
+.orders-item {
+  display: flex;
+  justify-content: space-between;
+}
+
+.orders-empty {
+  padding: 16px;
+  color: #6b7280;
+}
+
+@media (min-width: 768px) {
+  .orders-layout {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .orders-search {
+    max-width: 320px;
+  }
+}
+

@@ -1,0 +1,25 @@
+<div class="app-shell">
+  <nav class="app-nav">
+    <div class="app-nav-left">
+      <span class="app-logo">mini-shop</span>
+    </div>
+
+    <nav class="app-nav-links">
+      <a routerLink="/products" class="app-nav-link">Produtos</a>
+      <a routerLink="/orders" class="app-nav-link">Pedidos</a>
+    </nav>
+
+    <div class="app-nav-right">
+      <a routerLink="/cart" class="app-cart-link">
+        <i class="pi pi-shopping-cart app-cart-icon"></i>
+        @if (cart.count() > 0) {
+          <span class="app-cart-badge">{{ cart.count() }}</span>
+        }
+      </a>
+    </div>
+  </nav>
+
+  <main class="app-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
